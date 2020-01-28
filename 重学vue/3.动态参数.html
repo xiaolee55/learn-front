@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 中括号内不接受空格或者引号，如下 -->
+        <!-- <a v-bind:['foo' + bar]="value"> ... </a> -->
+
+        <!-- 中括号内命名大写会被转为小写 -->
+        <!-- 在 DOM 中使用模板时这段代码会被转换为 `v-bind:[someattr]` -->
+        <!-- <a v-bind:[someAttr]="value"> ... </a> -->
+        <a :[a]="'http://www.baidu.com'">111</a>
+    </div>
+    <script>
+         var vue = new Vue({
+            el : '#app',
+            data : {
+                a: 'href'
+            	},
+            methods : {	}    
+        });
+    </script>
+</body>
+
+</html>

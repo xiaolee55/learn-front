@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 注意：在遍历对象的键值对的时候，除了有val key外，在第三个位置还要索引值 -->
+        <p v-for="(val,key) in user">值是：{{ val }}---键是：{{key}}</p>
+    </div>
+    <script>
+         var vue = new Vue({
+            el : '#app',
+            data : {
+                user:{
+                    id:1,
+                    name:'xiaolee',
+                    gender:'男'
+                }
+            	},
+            methods : {	}    
+        });
+    </script>
+</body>
+
+</html>

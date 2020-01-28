@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .flex{
+        display: flex;
+    }
+    .demo{
+        border: solid 2px orange;
+        margin-bottom: 10px;
+    }
+    .item{
+            background-color: aqua;
+            border: solid 1px black;
+            color: white;
+            padding: 20px;
+        }
+    .flex-start{
+        justify-content: flex-start;
+    }
+    .flex-center{
+        justify-content: center;
+    }
+    .flex-end{
+        justify-content: flex-end;
+    }
+    .flex-around{
+        justify-content: space-around;
+    }
+    .flex-between{
+        justify-content: space-between;
+    }
+    .flex-evenly{
+        justify-content: space-evenly;
+    }
+
+    .flex-2-start{
+        align-items: flex-start;
+    }
+    .flex-2-center{
+        align-items: flex-center;
+    }
+    .flex-2-end{
+        align-items: flex-end;
+    }
+    .flex-2-stretch{
+        align-items: flex-stretch;
+    }
+    
+    .flex-grow-1{
+        flex-grow: 1;
+    }
+    .flex-grow-2{
+        flex-grow: 2;
+    }
+    .flex-grow-3{
+        flex-grow: 3;
+    }
+    .flex-grow-4{
+        flex-grow: 4;
+    }
+    .flex-grow-5{
+        flex-grow: 5;
+    }
+    .flex-direct-row{
+            flex-direction: row;
+        }
+    .flex-direct-row-reverse{
+            flex-direction: row-reverse;
+        }
+    .flex-direct-column{
+            flex-direction: column;
+        }
+    .flex-direct-column-reverse{
+            flex-direction: column-reverse;
+        }
+
+</style>
+<body>
+
+ <h1>主轴方向样式</h1>
+    <div class="demo flex" >
+        <div class="item ">A</div>
+        <div class="item ">B</div>
+        <div class="item ">C</div>
+        <div class="item ">D</div>
+    </div>
+    <div class="demo flex" >
+        <div class="item ">A</div>
+        <div class="item ">B</div>
+        <div class="item">C</div>
+        <div class="item ">D</div>
+    </div>
+    <div class="demo  flex" >
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+        <div class="item ">D</div>
+    </div>
+    <div class="demo flex" >
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+        <div class="item ">D</div>
+    </div>
+
+    
+ <h1>侧轴方向样式</h1>
+ <div class="demo flex" >
+     <div class="item ">A</div>
+     <div class="item ">B</div>
+     <div class="item ">C</div>
+     <div class="item ">D</div>
+ </div>
+ <div class="demo flex" >
+     <div class="item ">A</div>
+     <div class="item ">B</div>
+     <div class="item">C</div>
+     <div class="item ">D</div>
+ </div>
+ <div class="demo  flex" >
+     <div class="item">A</div>
+     <div class="item">B</div>
+     <div class="item">C</div>
+     <div class="item ">D</div>
+ </div>
+ <div class="demo flex" >
+     <div class="item flex-grow-5">A</div>
+     <div class="item flex-grow-3">B</div>
+     <div class="item flex-grow-4">C</div>
+     <div class="item flex-grow-5">D</div>
+ </div>
+</body>
+</html>

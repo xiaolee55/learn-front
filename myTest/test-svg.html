@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+    <style type="text/css">
+
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Use the mouse to pan (click and move) / zoom (scrollwheel)</p>
+  </body>
+  <script type="text/javascript">
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("width", 5000)
+      .attr("height", 3000)
+      .call(d3.behavior.zoom().on("zoom", function () {
+        svg.attr("transform"," scale(" + d3.event.scale + ")")
+      }))
+      .append("g")
+
+    svg.append("rect")
+      .attr("x",100)
+			.attr("y",100)
+			.attr("width",100)
+			.attr("height",100)
+      .style("fill", "#B8DEE6")
+  </script>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.9/split.min.js"></script>
+    <style>
+            html{
+            height: 100%;
+            overflow:hidden;
+        }
+        body{
+            position: relative;
+            height: 100%;
+            font: 500 16px/32px "Microsoft yahei";
+            margin: 0;
+            padding: 0;
+            background-color: #F6F6F6;
+        }
+        /*题目内容区开始*/
+        .topic-title-content{
+            position: absolute;
+            width: 20%;
+            height: 95%;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            overflow-y: scroll;
+            background-color: white;
+        }
+        .example1,.example2{
+            margin: 5px;
+            padding: 5px;
+            border-radius: 20px;
+            background-color: #F5F5F5;
+        }
+        /*题目内容区结束*/
+        .father{
+            position: absolute;
+            height: 99%;
+            width: 76%;
+            top:0;
+            left:23% ;
+            border: 5px solid black; 
+            background-color: black;
+        }
+        .head{
+            height: 80%;
+            width: 100%;
+        }
+        .head>div:nth-of-type(n){
+            float: left;
+            height: 100%;
+        }
+        .title{
+            height: 5%;
+            width: 100%;
+            overflow: hidden;
+        }
+         .title a{
+            padding: 5px;
+            color: white;
+            text-decoration: none;   
+            white-space:nowrap;  
+        }
+        .editor{
+            height:95%;
+            width: 100%;
+            background-color: aqua;
+        }
+        .box2{
+            background-color:beige;
+        }
+        .box3{
+            background-color:chocolate;
+        }
+        .foot{
+            height: 20%;
+            width: 100%;
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+        <div class="topic-title-content" id="ttc">
+                <div class="title"><h2>从排序数组中删除重复项</h2></div>
+                <div class="detail">               
+                        给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。<br>              
+                        不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>  
+                </div>               
+                <div class="example1">
+                    <h3>示例 1:</h3>
+                给定数组 nums = [1,1,2], <br>               
+                函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。<br>               
+                你不需要考虑数组中超出新长度后面的元素。<br>
+                </div>     
+                <div class="example2">
+                        <h3>示例 2:</h3> 
+                    给定 nums = [0,0,1,1,1,2,2,3,3,4],<br>             
+                    函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。<br>                
+                    你不需要考虑数组中超出新长度后面的元素。<br>
+                </div>
+                <div class="attention">
+                        <h3>说明：<br></h3>                
+                        为什么返回数值是整数，但输出的答案是数组呢?               
+                        请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
+                </div>
+    </div>
+    <div class="father">
+        <div class="head">
+                <div class="box1">
+                    <div class="title">
+                        <a id="t1" href="">题目一X</a>
+                        <a id="t2" href="">题目二X</a>
+                    </div>
+                    <div class="editor">编辑区</div>
+                </div>
+                <div class="box2">堆栈可视化</div>
+                <div class="box3">调试可视化</div>
+        </div>
+        <div class="foot"></div>
+    </div>
+    <script>
+        Split(['.box1', '.box2', '.box3'], {
+            sizes: [60,20,20],
+            minSize: 0,
+            snapOffset: 20
+        });  
+        Split(['.head','.foot'], {
+            direction: 'vertical',
+            sizes: [80,20],
+            minSize: 0
+        });  
+    </script>
+</body>
+</html>

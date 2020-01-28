@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <style>
+        .box1{
+            width: 100%;
+            background-color: aqua;
+        }
+        .box2{
+            float: left;
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+        }
+        .box3{
+            float: left;
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+        .box4{
+            height: 100px;
+            width: 100px;
+            background-color:green;
+        }
+        .clearfix:after{
+            content: " ";
+            display: block; 
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1 clearfix"><div class="box2"></div><div class="box3"></div></div>
+    <div class="box4"></div>
+</body>
+</html>

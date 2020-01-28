@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				margin-top: 300px;
+				margin-left: 500px; 
+				width: 250px;
+				height: 100px;
+			}
+			#box1{
+				float: left;
+				width: 50%;
+				height: 100px;
+				background-color: red;
+			}
+			
+			#box2{
+				float: left;
+				width: 5%;
+				height: 100px;
+				background-color: yellow;
+			}
+			#box3{
+				float: left;
+				width: 25%;
+				height: 100px;
+				background-color: greenyellow;
+			}
+			#box4{
+				float: left;
+				width: 5%;
+				height: 100px;
+				background-color: yellow;
+			}
+			#box5{
+				float: left;
+				width: 15%;
+				height: 100px;
+				background-color: blue;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			
+			window.onload = function(){
+				//获取box1
+				var box = document.getElementById("box");
+				var box1 = document.getElementById("box1");
+				var box2 = document.getElementById("box2");
+				var box3 = document.getElementById("box3");
+				drag(box2,box,box1,box3);
+				drag(box4,box,box3,box5);		
+			};
+			
+			/*
+			 * 提取一个专门用来设置拖拽的函数
+			 * 参数：开启拖拽的元素
+			 */
+			function drag(touchObj,containerObj,firstObj,secondObj){			
+				//当鼠标在被拖拽元素上按下时，开始拖拽  onmousedown
+				touchObj.onmousedown = function(event){
+					var mouseX=event.clientX;						//计算鼠标按下之前的位置
+					var containerWidth=containerObj.offsetWidth;	//计算父元素的宽度
+					var width_1=firstObj.offsetWidth;			//计算第一个子元素的宽度
+					var width_2=secondObj.offsetWidth;			//计算第二个子元素的宽度
+					document.onmousemove = function(event){										
+						var moveX=event.clientX-mouseX;				//计算鼠标的移动距离
+						console.log(width_1);
+						if(moveX<width_2&&moveX>-width_1){	
+							firstObj.style.width=Number((width_1+moveX)/containerWidth*100).toFixed(1)+"%";
+							secondObj.style.width=Number((width_2-moveX)/containerWidth*100).toFixed(1)+"%";
+						}
+						
+					};
+					document.onmouseup = function(){
+						document.onmousemove = null;
+						document.onmouseup = null;
+						//当鼠标松开时，取消对事件的捕获
+						touchObj.releaseCapture && touchObj.releaseCapture();
+					};
+					return false;
+					
+				};
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="box">
+				<div id="box1"></div>		
+				<div id="box2"></div>
+				<div id="box3"></div>
+				<div id="box4"></div>
+				<div id="box5"></div>
+		</div>
+	</body>
+</html>

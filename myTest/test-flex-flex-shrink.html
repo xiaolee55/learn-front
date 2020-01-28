@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo{
+            display: flex;
+            border: solid 2px orange;
+        }
+        .item{
+            background-color: aqua;
+            border: solid 1px black;
+            color: white;
+            padding: 20px;
+            width: 500px;
+        }
+        .a{
+         flex-shrink: 0.2;
+        }
+        .b{
+            flex-shrink: 0.5;
+        }
+        .c{
+            flex-shrink: 0.2;
+        }
+        /*参数表示允许的压缩量，越大表示允许的压缩量越大，即屏幕拉伸时的压缩量*/
+    </style>
+</head>
+<body>
+    <div class="demo" >
+        <div class="item a">A</div>
+        <div class="item b">B</div>
+        <div class="item c">C</div>
+    </div>
+</body>
+</html>

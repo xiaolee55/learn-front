@@ -1,0 +1,204 @@
+
+.sub-banner{
+    position: relative;
+}
+
+.sub-banner a{
+    position: absolute;
+    width: 100%;
+    height: 644px;
+    background: url(../images/subbanner.jpg) no-repeat center top; 
+}
+
+/* main部分开始 */
+    .main{
+        position: relative;
+    }
+    .main-slider{
+        position: relative;
+        float: left;
+        margin: 12px 0 0 220px;
+        width: 735px;
+        height: 454px;
+    }
+    .main-slider ul{
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        margin-left: -66px;
+       
+
+    }
+    .main-slider li{
+        float: left;
+        width: 18px;
+        height: 18px;
+        background-color: #3E3E3E;
+        color: #fff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 18px;
+        margin: 0 2px;
+        cursor: pointer;
+    }
+    li.current{
+        background-color: red;
+    }
+    .arrow a{
+        position: absolute;
+        top: 50%;
+        margin-top: -31px;
+        width: 28px;
+        height: 62px;
+        background-color: rgba(0,0,0,0.3);
+        border-radius: 5px;
+        /* opacity: 0.3;    /*会使内容也会变透明*/
+        color: #fff;
+        font: 400 22px/62px "simsun";
+        text-align: center;
+    }
+    .arrow a:hover{
+        background-color: rgba(0,0,0,0.6);
+    }
+    .arrow .arrow-left{
+        left: 0;
+    }
+    .arrow .arrow-right{
+        right: 0;
+        margin-right: 5px; 
+    }
+
+    .main-news{
+        float: right;
+    }
+    .main-news-top{
+        height: 372px;
+        width: 248px ;
+        margin: 12px 0 5px 0;
+        border: 1px dashed #E4E4E4;
+        overflow: hidden;
+        
+    }
+    .main-news-top-faster{
+        height: 163px;
+        border-bottom: 1px dashed #E8E8E7;
+    }
+    .main-news-top-faster-title{
+        line-height: 32px;
+        height: 32px;
+        padding: 0 15px;
+        border-bottom: 1px dotted #E8E8E7; 
+    }
+    .main-news-top-faster-title h3{
+        float: left;
+        font: 400 16px/32px "microsoft yahei";
+    }
+    .main-news-top-faster-title a{
+        float: right;
+        font-family: "conslas";
+    }
+    .main-news-top-faster-content{
+        padding: 5px 0 0 15px;
+    }
+    .main-news-top-faster-content li{
+        line-height: 24px;
+    }
+    .main-news-top-faster-content span{
+        font-weight: 700;
+        margin-right: 5px;
+    }
+    .main-news-top-money ul{            /*父盒子宽度不够，又要浮动盒子不掉下去，就只要给给子盒子之上父盒子之下给一个盒子，
+                                        只给宽度，保证宽度能使浮动盒子不掉下去 */
+        width: 260px;
+   }
+    .main-news-top-money li{
+         width: 62px;
+         height: 70px;
+         float: left;
+         border: 1px solid #E8E8E7;
+         margin-left: -1px;
+         margin-top: -1px;
+         border-top: 0;
+    }
+    .main-news-top-money a{
+        position: relative;
+        display: block;
+        width: 62px;
+        height: 70px;
+        padding-top: 40px;
+        text-align: center;
+        line-height: 30px;
+    }
+    .main-news-top-money i{
+        position: absolute;
+        top: 13px;
+        left: 18px;
+        width: 25px;
+        height: 25px;
+        background: url(../images/fly.png)  no-repeat;
+    }
+    .show{
+        background: url(../images/china.png) no-repeat -160px -49px;
+    }
+    .main-news-top-money  .main-news-top-money-ico2{
+        background-position: 0 -25px;
+    }
+    .main-news-top-money  .main-news-top-money-ico3{
+        background-position: 0 -50px;
+    }
+    .main-news-top-money  .main-news-top-money-ico4{
+        background-position: 0 -75px;
+    }
+    .main-news-top-money  .main-news-top-money-ico5{
+        background-position: 0 -100px;
+    }
+    .main-news-top-money  .main-news-top-money-ico6{
+        background-position: 0 -125px;
+    }
+    .main-news-top-money  .main-news-top-money-ico7{
+        background-position: 0 -150px;
+    }
+    .main-news-top-money  .main-news-top-money-ico8{
+        background-position: 0 -175px;
+    }
+    .main-news-top-money  .main-news-top-money-ico9{
+        background-position: 0 -200x;
+    }
+    .main-news-top-money  .main-news-top-money-ico10{
+        background-position: 0 -225px;
+    }
+    .main-news-top-money  .main-news-top-money-ico11{
+        background-position: 0 -250px;
+    }
+    .main-news-top-money  .main-news-top-money-ico12{
+        background-position: 0 -275px;
+    }
+
+        /* today部分开始 */
+        .today{
+           padding: 10px 0 20px;
+           position: relative;
+        }
+        .today-left{
+            float: left;
+        }
+        .today-left a{
+            display: block;
+            width: 205px;
+            height: 151px;
+            background: url(../images/pic1.jpg);
+        }
+        .today-right{
+            width: 1000;
+            float: right;
+            position: relative;
+        }       
+        .today-right ul{
+            width: 410%;
+        }
+        .today-right li{
+            float: left;
+            margin-left: 1px;
+        }
+
+        /* today部分结束 */

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+     <!-- 使用v-cloak能够解决差值表达式的闪烁问题，即在值完全加载之前不让其显示 -->
+         <p v-cloak>{{msg}}</p>
+         <!-- v-text作用于{{}}相同，不过v-text不会出现渲染闪烁问题，因为标签内本身就没有值-->
+         <h4 v-text="msg"></h4>
+        <!-- v-text会把标签内的内容覆盖，差值表达式只会替换占位符{{msg}} -->
+
+
+        <!-- 解析Vue中的HTML代码，这个也会覆盖标签内的代码 -->
+        <div v-html="msg2"></div>
+
+        <!-- v-bind：是Vue中，提供的用于绑定属性的指令，即规定哪个属性使用Vue中的变量值，会把属性后面的引号中的值当做JS代码来解析 -->
+        <!-- v-bind：指令可以简写为： -->
+        <input type="button" value="按钮" :title="mytitle+'123'">
+
+        <!-- Vue中提供了v-on：事件绑定机制，缩写是@ -->
+        <input type="button" value="按钮" v-on:click="show">
+    </div>
+    <script>
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                msg: '123',
+                msg2: '<h1>我是一个大h1</h1>',
+                mytitle: '这是一个自己定义的title'
+            },
+            methods:{   //这个methods属性中定义了当前Vue实例所有可用的方法 
+                show:function(){
+                    alert('Hello');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

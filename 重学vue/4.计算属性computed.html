@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+
+<body>
+        <div id="example">
+                <p>Original message: "{{ message }}"</p>
+                <p>Computed reversed message: "{{ reversedMessage }}"</p>
+                <p>{{time}}</p>
+              </div>
+    <script>
+        var vm = new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello'
+        },
+        // computed可以进行缓存，只有在依赖发生改变时才会重新求值，而如果用methods的方法计算表达式虽然也能达到效果，但是不管
+        //值有没有发生改变都会重新运行函数,缓存的目的主要是当计算属性是一个性能开销比较大的计算时，如果使用函数将会导致重复运行，加大开销
+        computed: {
+            // 计算属性的 getter
+            reversedMessage: function () {
+            // `this` 指向 vm 实例
+            return this.message.split('').reverse().join('')
+            },
+            time: function () {
+                return Date.now()
+            }
+         },
+         methods: {
+             timeFun: function () {
+                return Date.now()
+             }
+         }
+        })
+    </script>
+</body>
+
+</html>

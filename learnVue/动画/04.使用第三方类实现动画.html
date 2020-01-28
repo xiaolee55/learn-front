@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+    <link rel="stylesheet" href="../品牌案例小项目/lib/animate.css">
+    <!-- 入场使用bounceIn  离场用bounceOut -->
+     <style>
+
+         .v-enter,
+         .v-leave-to{
+             opacity: 0;
+             transform: translateX(80px);
+         }
+
+
+         .v-enter-active,
+         .v-leave-active{
+            transition: all 1s ease;
+         }
+
+         /* 可以通过改变transition标签的name属性来自定义属性名字 */
+         .h5-enter,
+         .h5-leave-to{
+             opacity: 0;
+             transform: translateY(80px);
+         }
+
+
+         .h5-enter-active,
+         .h5-leave-active{
+            transition: all 1s ease;
+         }
+     </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="flag=!flag">
+        <!-- 使用 :duration="毫秒值"来统一设置入场和离场时候的动画时长 -->
+        <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut" :duration="400">
+            <h3 v-if="flag">这是一个h3</h3>
+        </transition>
+
+        <!-- 使用 :duration="{enter:200,leave:400}"来分别设置入场和离场时候的动画时长 -->
+        <input type="button" value="toggle" @click="flag2=!flag2">
+        <transition name='h5' enter-active-class="animated bounceIn" leave-active-class="animated bounceOut" :duration={enter:200,leave:400}>
+            <h5 v-if="flag2">这是一个h5</h5>
+        </transition>
+
+    </div>
+    <script>
+         var vue = new Vue({
+            el : '#app',
+            data : {
+                flag: false,
+                flag2: false
+            	},
+            methods : {	}    
+        });
+    </script>
+</body>
+
+</html>

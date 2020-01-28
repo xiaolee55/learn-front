@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html{
+    height: 100%;
+    overflow:hidden;
+}
+body{
+    height: 100%;
+    font: 500 16px/32px "Microsoft yahei";
+    margin: 0;
+    padding: 0;
+}
+button{
+    border-color: rgba(0,0, 0,0);
+    border-radius: 10%;
+    color: white;
+    outline: none;
+ }
+#aa{
+	height: 50%;
+}
+/*操作栏开始*/
+.handle-bar{
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 45px;
+    width: 21.2%;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* box-shadow: 0 -3px 3px grey; */
+    z-index: 1;
+}
+#openList{
+    float: left;
+    margin-left: 20px;
+    margin-top: 5px;
+    /* height: 50px; */
+    font: 900 28px/28px "Microsoft yahei";
+}
+#nextBt,#lastBt{
+    float: right;
+    width: 80px;
+    height: 35px;
+    margin: 3px 15px 3px 0;
+    border-radius: 50px 50px 50px 50px;
+    background-color: MediumAquamarine;
+    font: 900 14px/28px "Microsoft yahei";
+}
+/*操作栏结束*/
+
+ /*题目内容区开始*/
+ .topic-title-content{
+	 height: 90%;
+     width: 20%;
+     float: left;
+     padding: 20px;
+     overflow-y: scroll;
+     transition: all 0.8s 0.2s;
+}
+ .example1,.example2{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px grey solid;
+    background-color: rgb(245,245,245);
+    transition: all 0.8s;
+ }
+		</style>
+	</head>
+	<body>
+		<div id="aa">
+        <div class="handle-bar" id="handleBar">
+        <i id="openList" class="iconfont icon-liebiao-copy"></i>
+        <button id='nextBt'>下一题</button>
+        <button id='lastBt'>上一题</button>
+        </div>
+        <div class="topic-title-content" id="topicContent">
+                    <div class="title"><h2>从排序数组中删除重复项</h2></div>
+                    <div class="detail">
+                            给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。<br>
+                            不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>
+                    </div>
+                    <div class="example1" id="e1">
+                        <h3>示例 1:</h3>
+                    给定数组 nums = [1,1,2], <br>
+                    函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。<br>
+                    你不需要考虑数组中超出新长度后面的元素。<br>
+                    </div>
+                    <div class="example2" id="e2">
+                            <h3>示例 2:</h3>
+                        给定 nums = [0,0,1,1,1,2,2,3,3,4],<br>
+                        函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。<br>
+                        你不需要考虑数组中超出新长度后面的元素。<br>
+                    </div>
+                    <div class="attention">
+                            <h3>说明：<br></h3>
+                            为什么返回数值是整数，但输出的答案是数组呢?
+                            请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
+                    </div>
+        </div>					
+		</div>
+	</body>
+</html>
+
+

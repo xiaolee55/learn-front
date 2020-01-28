@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script >
+        function sum(num1,num2){
+            return num1+num2;
+        }
+        function callSum1(num1,num2){
+            return sum.apply(this,arguments);
+        }
+        function callSum2(num1,num2){
+            return sum.apply(this,[num1,num2]);
+        }
+        alert(callSum1(10,10,10));
+        alert(callSum2(20,10,10,10));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

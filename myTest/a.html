@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>运动</title>
+<style>
+	html,body{
+		margin:0
+	}
+div
+{
+	margin: 0;
+	padding: 0;
+	width:50px;
+	height: 50px;
+	position: absolute;
+	background: red;
+}
+</style>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script>
+	window.onload=function()
+	{
+		var speed=0;
+		var div1=document.getElementById("div1");
+		setInterval(function(){
+			if(div1.offsetLeft<=0)
+				speed=10;
+			if(div1.offsetLeft>=1000)
+				speed=-10;
+			div1.style.left=div1.offsetLeft + speed +"px";
+			console.log(div1.offsetLeft,speed);
+		},10)
+	}
+</script>
+<html>

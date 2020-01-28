@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         .demo{
+            display: flex;
+            border: solid 2px orange;
+            height: 200px;
+            justify-content: center;
+        }
+        .demo-direct-row{
+            flex-direction: row;
+        }
+        .demo-direct-row-reverse{
+            flex-direction: row-reverse;
+        }
+        .demo-direct-column{
+            flex-direction: column;
+        }
+        .demo-direct-column-reverse{
+            flex-direction: column-reverse;
+        }
+        /*采用row和row-reverse时，元素是纵向排列，不过row-reverse是将HTML中的元素倒序排列*/
+        /*采用column和column-reverse时，元素是横向排列，不过row-reverse是将HTML中的元素倒序排列*/
+        .item{
+            background-color: aqua;
+            border: solid 1px black;
+            color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+        <div class="demo  demo-direct-row" >
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+            <div class="demo  demo-direct-row-reverse" >
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+            <div class="demo  demo-direct-column" >
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+            <div class="demo  demo-direct-column-reverse" >
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+</body>
+</html>

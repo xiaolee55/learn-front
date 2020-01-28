@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html,body{
+      height: 100%;
+      width: 100%;
+      display: flex;
+    }
+    body>div{
+      height: 100px;
+    }
+    .left {
+      width: 300px;
+      background-color: red;
+    }
+    .right {
+      width: 300px;
+      background-color: red;
+    }
+    .center{
+      /* 自动填充剩余空间 */
+      flex: 1;
+      height: 300px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+    <div class="left">左</div>
+    <div class="center">中</div>
+    <div class="right">右</div>
+</body>
+</html>

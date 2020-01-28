@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="跑起来" @click="pao">
+        <input type="button" value="停下" @click="stop">
+        <h4>{{msg}}</h4>
+    </div>
+    <script>
+        //在VM实例中如果想要获取data上的数据，或者想调用method中的方法，必须通过this.属性名或this.函数名，这里的this表示new出来的VM实例对象
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                msg: '猥琐发育别浪~~!',
+                intervalId: null   //在data上定义定时器Id
+               
+            },
+            methods:{   
+                pao(){  
+                    console.log(this.msg);                 
+                    var _this=this;
+                    if(this.intervalId!=null){
+                        return;
+                    }
+                  this.intervalId=setInterval(function(){
+                    //获取到头的第一个字符 
+                    var start=_this.msg.substring(0,1);
+                    //获取到后面的所有字符
+                   var end=_this.msg.substring(1);
+                   //重新拼接得到新字符串，并赋值给this.msg
+                    _this.msg=end+start;
+                    },400)
+                  
+                },
+                stop(){
+                    //清除定时器
+                    clearInterval(this.intervalId);
+                    //每当清除定时器后需要重新把interval置为null
+                    this.intervalId=null;
+                    console.log(this);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

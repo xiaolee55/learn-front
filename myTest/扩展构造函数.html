@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+function extend(sup,base) {
+  var descriptor = Object.getOwnPropertyDescriptor(   //保存base函数的原型中constructor属性的属性配置的引用
+    base.prototype,"constructor"
+  );
+  base.prototype = Object.create(sup.prototype);    //复制sup函数的原型并赋值给base函数的原型
+  var handler = {          
+    construct: function(target, args) {            //当发生new操作时会调用这个函数
+      var obj = Object.create(base.prototype);     //赋值base函数的原型
+      this.apply(target,obj,args);                 //在target对象下调用函数，
+      return obj;
+    },
+    apply: function(target, that, args) {
+      sup.apply(that,args);
+      base.apply(that,args);
+    }
+  };
+  var proxy = new Proxy(base,handler);
+  descriptor.value = proxy;
+  Object.defineProperty(base.prototype, "constructor", descriptor);
+  return proxy;
+}
+
+var Person = function(name){
+  this.name = name
+};
+
+var Boy = extend(Person, function(name, age) {
+  this.age = age;
+});
+
+Boy.prototype.sex = "M";
+
+var Peter = new Boy("Peter", 13);
+console.log(Peter.sex);  // "M"
+console.log(Peter.name); // "Peter"
+console.log(Peter.age);  // 13
+		</script>
+	</body>
+</html>

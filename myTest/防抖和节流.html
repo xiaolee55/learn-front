@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #search {
+        width: 400px;
+        margin-left: 300px;
+        margin-bottom: 50px;
+      }
+      #showSearch {
+        width: 800px;
+        height: 100px;
+        background: lightblue;
+        color: red;
+        margin-left: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="search" name="" id="search" />
+    <div id="showSearch"></div>
+  </body>
+  <script>
+	  /*fun=test和fun=test()要注意区分，因为这个没搞清楚差点去世*/
+ function debounce(fn, wait) {
+      let timeout;
+      return function() {
+        let context = this;
+        let args = arguments;
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+        timeout = setTimeout(function() {
+          fn.apply(context, args);
+        }, wait);
+      };
+    }
+	let search = document.querySelector("#search");
+    let showSearch = document.querySelector("#showSearch");
+    function getSearchInfo(e) {
+      showSearch.innerText = this.value; 
+      console.log(e); 
+    }
+    search.onkeyup = test()
+   function test(){
+	   console.log(11)
+	   return function(){
+		   console.log(222)
+	   }
+   }
+  </script>
+</html>
+

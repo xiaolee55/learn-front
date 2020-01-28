@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.test{
+				position: fixed;
+				left: 0;
+				 right: 0; 
+			}
+			.box {
+			  padding: 10px;
+			  background-color: #cd0000;
+			  text-align: center;
+			}
+			.content {
+			  display: inline-block;
+			  text-align: left;
+			}
+			.container {
+			  width: 280px;
+			  margin: 0 auto;
+			  padding: 40px 0;
+			  background-color: #f0f3f9;
+			  animation: width 2s infinite alternate;
+			}
+			
+			@keyframes width {
+			  from { width: 200px; }
+			  to { width: 280px; }
+			}
+			
+			.textarea {
+			  padding: 9px 8px;
+			  border: 1px solid #d0d0d5;
+			  border-radius: 4px;
+			  background-color: #fff;  
+			}
+			
+			.textarea > textarea {
+			  width: 100%;
+			  line-height: 20px;
+			  padding: 0;
+			  border: 0 none;
+			  outline: 0 none;
+			  background: none;
+			  resize: none;
+			}
+		</style>
+	</head>
+	<body>
+<!-- 		<div id="">
+			<div class="test">asdasd</div>
+		</div> -->
+<!-- 		<div class="box">
+		  <p id="conMore" class="content">文字内容-新增文字-新增文字-新增文字文字内容-新增文字-新增文字-新增文字文字内容-新增文字-新增文字-新增文字</p>
+		</div> -->
+<!-- 		<div class="container">
+		  <div class="textarea">
+		    <textarea rows="5" placeholder="色块是容器"></textarea>
+		  </div>
+		</div> -->
+		<style>
+		    * {
+		        margin: 0;
+		        padding: 0;
+		    }
+		    html, body {
+		        height: 100%;
+		    }
+		    .wrap {
+		        height: 100%;
+		        flex-flow: column;
+		        display:flex;
+		    }
+		    .header {
+		        height: 30px;
+		        line-height: 30px;
+		        background: pink;
+		    }
+		    .wrapper {
+		        flex: 1;            
+		    }
+		    .left, .middle, .right {
+		        flex: 1;
+		        display:flex;
+		        flex-flow: column;
+		        padding: 5px 0;
+		    }
+		    .cl {
+		        border: 1px solid pink;
+		        flex: 1;
+		        margin: 5px;
+		    }
+		</style>
+		<!DOCTYPE html>
+		<html>
+		    <head>
+		        <meta charset="UTF-8">
+		        <title></title>
+
+		    </head>
+		    <body>
+		        <div class="wrap">
+		            <div class="header">头部标题</div>
+		            <div class="wrapper">
+						
+		            </div>
+		        </div>      
+		    </body>
+		</html>
+		
+	</body>
+</html>

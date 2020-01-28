@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #box1{
+            background-color: blue;
+            height: 300px;
+            width: 300px;
+            padding: 10px;      /*如果此处不设置内边距，则子元素的外边距就会盖过父元素的外边距*/
+            margin: 10px ;
+            
+        }
+        #box2{
+            background-color: aqua;
+            height: 30px;
+            width: 30px;
+            padding:20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"><div id="box2">nihao</div></div>
+    
+</body>
+</html>

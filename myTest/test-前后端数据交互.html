@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+          let xhr=new XMLHttpRequest();
+          let subjectData;
+        xhr.open('GET','https://www.easy-mock.com/mock/5cbbf6c77719e4427764d791/lichangxiao/testAnyview',false);
+        xhr.onreadystatechange=()=>{
+            if(xhr.readyState===4){
+                subjectData=JSON.parse(xhr.responseText)
+            }   
+        };
+        xhr.send();
+        console.log(subjectData[0].subject);
+        
+    </script>
+</body>
+</html>

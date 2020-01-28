@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+<style>
+    .ball{
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: red;
+    }
+</style>
+<body>
+    <div id="app">
+        <input type="button" value="点击" @click="flag=!flag">
+        <transition
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @after-enter="afterEnter">
+                <div class="ball" v-if="flag">
+        </transiition>
+        
+
+        </div>
+    </div>
+    <script>
+         var vue = new Vue({
+            el : '#app',
+            data : {
+                flag:false
+            	},
+            methods : {
+                //动画钩子函数的第一个参数：el,表示要执行动画的那个DOM元素是个元素的JS DOM对象
+                //可以认为，el是通过document.getElementById("")方式获取到原生JS DOM对象
+                beforeEnter(el){
+                    //beforeEnter表示动画入场之前，此时，动画尚未开始，可以在beforeEnter中，设置元素开始动画之前的起始样式
+                    // 设置小球开始动画之前的起始样式
+                    el.style.transform="translate(0,0)"
+                },
+                enter(el,done){
+                    //这句话无实际作用，但是如果不写出不来动画效果
+                    //可以认为el.offsetWidth会强制动画刷新
+                    el.offsetWidth
+                    //enter表示动画开始之后的样式，这里可以设置小球完成动画之后的结束状态
+                    el.style.transform="translate(150px,450px)"
+                    el.style.transition="all 1s ease"
+
+                    //这里的done，其实就是afterEnter这个函数，也就是说：done是afterEnter函数的引用
+                    done()
+                },
+                afterEnter(el){
+                    //动画完成后会调用该函数
+                    this.flag=false
+                } 
+
+                //每次点击按钮后又会开始一次新的生命周期，所以小球又会回到原来的坐标重新做一次动画
+            }    
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+//解构
+		let {a,b}={a:5,b:8}
+				console.log(a,b)
+				
+//箭头函数		
+		let obj={
+			a: 5,
+			afun: ()=>{
+				console.log(this)
+				}
+		}
+		obj.afun()
+		
+/*剩余参数*/
+		//参数收集
+		let fun=function(a,b,...c){console.log(a,b,c)}
+		fun(1,2,3,4,5,6,7)
+		let arr1=[12,5,8];
+		let arr2=[4,5,6];
+		//加了三个点就相当于把数组里面的东西直接放出来, 称为数组展开
+		let arr=[...arr1,...arr2];
+		console.log(arr)
+		//json展开
+		let json={a:1,b:2}
+		let json2={
+			...json,
+			c:3,
+			}
+		console.log(json2)
+
+/*数组方法*/
+		//map---映射:一一对应
+		let arrMap1=[68,53,12,98,65]
+		let arrMap2=arrMap1.map(item=>(item>60?"及格":"不及格"))
+		console.log(arrMap2)
+		//reduce---传入n个值,得到一个值
+		{
+			let arr=[68,53,12,98,65];
+			//有三个参数,第一个是临时值,即每次return的值,第二个是项的值,第三个是下标值
+			let result=arr.reduce(function(tmp,item,index){
+				// alert(index+': '+tmp+', '+item);
+				return tmp+item;
+			})
+			console.log(result)
+		}
+		//filter---过滤
+		{
+			let arr=[68,53,12,98,65,83,16];
+			let arr2=arr.filter(item=>item%2==0)
+			console.log(arr2)
+		}
+		//forEach--遍历
+		{
+			let arr=[68,53,12,98,65,83,16];
+			arr.forEach((item,index)=>{
+				// 模板字符串
+				console.log(`第${index}个:${item}`)
+			})
+		}
+/*异步，promise，async/await这一系列的宗旨都是为了简化异步的写法，让异步的写法和同步一样简单*/
+	//Promise
+	//Promise只是一个对异步的封装对象,封装起来方便调用
+	//Promise.all([p1,p2,p3]).then(),同时处理多个promise,then里接收 处理结果的成功值,这个才是简化的核心
+	
+	let p=new Promise(function(resolve,reject){
+		//异步
+		//resolve-解决
+		//reject-拒绝
+		$.ajax({
+			url: '1.txt',
+			dataType: 'json',
+			success(arr){
+				resolve(arr);
+			},
+			error(res){
+				reject(res);
+			}		
+		})
+	})
+	p.then(function(arr){
+		alert('成功');
+		console.log(arr);
+	},function(res){
+		alert('失败');
+		console.log(res);
+	})
+	
+	//async,await,async函数能够"暂停"
+	async function show(){
+		let a=12;
+		let b=5;
+		try{
+			let data=await $.ajax({url: '',dataType: 'json'});
+			alert(a+b+data[0]);
+		}catch(e){
+			alert("出错")
+		}
+		
+	}
+</script>
+	</head>
+	<body>
+	</body>
+</html>

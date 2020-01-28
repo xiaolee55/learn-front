@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+    <style>
+        .outer{
+            background-color: red;
+            padding: 40px;
+        }
+        .inner{
+            height: 150px;
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+      <div id="app">
+          <div class="outer" @click="divlHandler1">
+            <div class="inner" @click.stop="divlHandler2">
+                    <input type="button" value="点他" @click="btnHandler">
+                    <!-- .stop:阻止冒泡行为 -->
+                    <!-- .pevent:阻止默认行为 -->
+                    <!-- .capture:使监听器以捕获的形式触发事件，即外层先触发，内层后触发 -->
+                    <!-- .self:实现只有点击当前元素的时候，才会执行触发函数 -->
+                    <!-- .once:使事件只触发一次 -->
+                    <!-- 以上事件可以串联写，比如click.a.b.c这样 -->
+                    <!-- .self和.stop的区别：前者的本质是只有当其自己产生某种行为时才会触发事件，如本例，而.stop是有效阻止事件的冒泡，不管点击的是不是他本身，只要是他的子元素
+                    产生的冒泡事件他都能阻止 -->
+            </div>    
+        </div>       
+      </div>
+      <script>
+            var vm=new Vue({
+                el: '#app',
+                data: {
+                   
+                },
+                methods:{  
+                    divlHandler1(){
+                        console.log('这是触发了outer div的点击事件')
+                    },
+                    divlHandler2(){
+                        console.log('这是触发了inner div的点击事件')
+                    },//记得逗号
+                    btnHandler(){
+                        console.log('这是触发了btn的点击事件')
+                    }
+                }
+            })
+        </script>
+</body>
+</html>

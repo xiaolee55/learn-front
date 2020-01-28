@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+<div>
+ <input type="button"id ="button1"value="1"onclick="moveBtn(this);">
+ <input type="button"id ="button2"value="2"/>
+ </div>
+ <script type="text/javascript">
+ function moveBtn(obj) {
+	 console.log(obj)
+     var clone = obj.cloneNode(true); // 复制一个button1结点
+     var parent = obj.parentNode; // 找到button1的父节点
+     parent.appendChild(clone); // 将复制的结点加入到父节点，也就是button1的复制结点现在在button2后面了
+     parent.removeChild(obj); // 移除原来的button1
+ }
+ </script>
+	</body>
+</html>

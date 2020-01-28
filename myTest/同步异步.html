@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let xhr=new XMLHttpRequest();
+        xhr.open('GET',' https://www.easy-mock.com/mock/5cbbf6c77719e4427764d791/lichangxiao/anyview?id="1"',false);
+        xhr.onreadystatechange=()=>{
+            if(xhr.readyState===2){
+                console.log(1)
+            }
+            if(xhr.readyState===4){
+                console.log(2)
+            }   
+        };
+        xhr.send();
+        console.log(3);
+        /*异步编程时以上代码输出312，同步编程时以上代码输出2，3，因为当send执行期间，
+        虽然触发了xhr.onreadystatechange()===2，但是因为主线程没有空间来执行他，所以不会输出1，等待队列的下一个主任务  完成之后才去等待队列寻找*/
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 单选按钮 -->
+            <input type="checkbox" id="checkbox" v-model="checked" value="aaa">
+            <label for="checkbox">{{ checked }}</label>
+
+        <!-- 选择框 -->
+            <div id="example-5">
+                    <select v-model="selected">
+                      <option disabled value="">请选择</option>
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                    </select>
+                    <span>Selected: {{ selected }}</span>
+            </div>
+        <!-- 多选择框 -->
+            <select v-model="mulSelected" multiple style="width: 50px;">
+                    <option value="b">A</option>
+                    <option>B</option>
+                    <option>C</option>
+            </select>
+                  <br>
+            <span>mulSelected: {{ mulSelected }}</span>
+
+            <input type="radio" v-model="picked" value="a">
+
+            <!-- 复选框 -->
+            <input
+            type="checkbox"
+            v-model="toggle"
+            true-value="yes"
+            false-value="no"
+            >
+
+    </div>
+    <script>
+         var vue = new Vue({
+            el : '#app',
+            data : {
+                checked: false,
+                selected: '',
+                mulSelected: '',
+                picked: '',
+                toggle: ''
+            },
+            methods : {	}    
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*GET请求*/
+        let xhr=new XMLHttpRequest();
+        // xhr.open('GET',' https://www.easy-mock.com/mock/5cbbf6c77719e4427764d791/lichangxiao/anyview?id="1"');
+        xhr.open('GET','model.html');
+        xhr.setRequestHeader('name','shadiao'); //设置请求头（不能出现中文）,且必须在open之后
+        xhr.onreadystatechange=()=>{
+
+            if(xhr.readyState===2){
+                let time=xhr.getResponseHeader('Date');   //获取响应头的日期时间
+                console.log(new Date(time));            //将格林尼治事件转化为北京时间
+            }
+
+            // if(xhr.readyState===4&&xhr.status===200){
+            //     console.log(JSON.parse(xhr.responseText));
+            // }
+        };
+
+        xhr.send(null);
+
+        /*POST请求*/
+        // let xhr=new XMLHttpRequest();
+        // xhr.open('POST',' https://www.easy-mock.com/mock/5cbbf6c77719e4427764d791/lichangxiao/test');
+        // xhr.onreadystatechange=()=>{
+        //     if(xhr.readyState===4&&xhr.status===200){
+        //         console.log(JSON.parse(xhr.responseText));
+        //     }
+        // };
+        // xhr.send(JSON.stringify({id:1000,lx:2000}));    //请求主体传递给服务器的JSON格式的字符串，但是真实项目中常用的是URL-ENCODE格式的字符串
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// let person={
+			//    a: 3,
+			//   get b(){
+			// 	  console.log('a被拿了')
+			// 	  return this.a
+			//   },
+			//   set b(val){
+			// 	  console.log('a被设置')
+			// 	  this.a=val
+			//   }
+			// }
+			// console.log(person.b,person.b=44)
+			// console.log(person.b)
+			function Person(){
+				let _skill = 0
+				Object.defineProperty(this, 'skill', {
+					get: ()=>{
+						console.log('get触发了')
+						return _skill
+					},
+					set: (val)=>{
+						console.log('set触发了')
+						_skill = val
+					}
+				})
+			}
+			let person = new Person()
+			console.log(person._skill)  //undefined
+			console.log(person.skill)   //get触发了,0
+			console.log(person.skill=10) //set触发了,10
+			var emperor = {name:'komei'}  //目标对象
+			var representative = new Proxy(emperor,{
+				get: (target,key) =>{
+					console.log('key的值是'+key)
+					return key in target ? target[key]: '不存在'
+				},
+				set: (target,key,value) => {
+					console.log('设置'+key+'的值')
+					target[key] = value
+				}
+			})
+			console.log('直接调用',emperor.name)
+			console.log('代理对象',representative.name)
+			console.log('对象不存在的值',emperor.nam)
+			console.log('代理对象不存在的值',representative.nam)
+			representative.name='煞笔'
+			representative.nam='煞撒'
+			console.log('新的对象值',emperor)
+			
+			// function isPrime(number) {
+			// 	if(number<2) return false
+			// 	for (let i = 0; i < number; i++) {
+			// 		if(number%i===0) return false
+			// 	}
+			// 	return true
+			// }
+			// const _isPrime = new Proxy(isPrime,{  //代理函数的调用
+			// 	apply: (target,thisArg,args) => {
+			// 		console.time('_isPrime') //启动计时器
+			// 		const result = target.apply(thisArg,args)
+			// 		console.timeEnd('_isPrime')  //结束计时器
+			// 		return result
+			// 	}
+			// })
+			// _isPrime(129982745); 
+			// console.time('isPrime')
+			// isPrime(129982745) 
+			// console.timeEnd('isPrime')
+			//代理的作用主要就是将业务代码与其他代码解耦，比如添加性能监控或者日志,或者是验证代码
+			
+			//代理可以代理一切对象,包括数组,函数等
+			
+			
+		</script>
+	</body>
+</html>

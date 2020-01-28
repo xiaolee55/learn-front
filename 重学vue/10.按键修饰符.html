@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 当只有一个特殊按键修饰符时，单独按他不会有效果，还需要加另一个任意键 ，若使用exact则可实现一个键触发-->
+            <input @kseyup.ctrl.exact="clear">
+            <h2 v-if="flag">当按下alt和C时我会出现</h2>
+    </div>
+    <script>
+         var vue = new Vue({
+            el : '#app',
+            data : {
+                flag: false
+            	},
+            methods : {
+                clear: function () {
+                    alert(111)
+                    console.log(111)
+                    
+                }
+            	}    
+        });
+    </script>
+</body>
+
+</html>

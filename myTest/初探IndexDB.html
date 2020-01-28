@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    if('indexedDB' in window){
+       console.log('当前浏览器支持 IndexedDB');
+    } else {
+      console.log('您的浏览器不支持 IndexedDB')
+      
+      // todo 建议升级或者更换其他浏览器
+    }
+    // 数据库实例
+    let dbInstance;
+    // 数据库打开操作，第一个参数是数据库名称, 第二个参数是数据库版本
+    let DBRequestLink = window.indexedDB.open('dataBaseName', 6)
+    let  transaction
+    DBRequestLink.onsuccess = function(event) {
+      // 获取数据库实例
+      dbInstance = DBRequestLink.result;
+      transaction = dbInstance.transaction('person', "readwrite");
+      // 这里的 dbInstance 就是第二步中的 dbInstance 对象， 
+      // transaction api 的第一个参数是数据库名称，第二个参数是操作类型
+      let newItem = {
+        id: 1,
+        name: '徐嘻嘻',
+        age: 3,
+        sex: 'female'
+      };
+      
+      // 找到对应的存储对象
+      let objectStore = transaction.objectStore('person');
+      // 添加到数据对象中, 传入javascript对象
+      objectStore.add(newItem);
+      // 其他操作
+    };
+    // 这个监听回调触发于数据库首次新建、open数据库时传递新版本(只能比之前传递的版本高)
+    DBRequestLink.onupgradeneeded = function(event) {
+    let db = event.target.result;
+    // 创建一个数据库存储对象，并指定主键
+    let objectStore = db.createObjectStore('person', { 
+      keyPath: 'id',
+      autoIncrement: true
+    });
+    /* 定义存储对象的数据项 
+      * 第一个参数是创建的索引名称，可以为空
+      * 第二个参数是索引使用的关键名称，可以为空
+      * 第三个参数是可选配置参数，可以不传，常用参数之一就是 unique ，表示该字段是否唯一，不能重复
+      */ 
+    objectStore.createIndex('id', 'id', {
+      unique: true    
+    });
+    objectStore.createIndex('name', 'name');
+    objectStore.createIndex('age', 'age');
+    objectStore.createIndex('sex', 'sex');
+  };
+
+  </script>
+</body>
+</html>

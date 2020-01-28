@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>WebSocket</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var timeChunk = function(ary, fn, count) {
+				var t;
+				var start = function() {   //开始创建DOM结点,每次都将数组首位移除
+					for (var i = 0; i < Math.min(count || 1, ary.length); i++) {
+						var obj = ary.shift();
+						fn(obj);
+					}
+				};
+				return function() { 
+					t = setInterval(function() {   //定时调用开始函数
+						if (ary.length === 0) { // 如果全部节点都已经被创建好
+							return clearInterval(t);
+						}
+						start();
+					}, 200); // 分批执行的时间间隔，也可以用参数的形式传入
+				};
+			}
+			var ary = [];
+			for (var i = 1; i <= 1000; i++) {   //创建数组
+				ary.push(i);
+			};
+			var renderFriendList = timeChunk(ary, function(n) {  //调用分时函数,返回包含定时器的函数,创建闭包
+				var div = document.createElement('div');
+				div.innerHTML = n;
+				document.body.appendChild(div);
+			}, 8);
+			renderFriendList();   //调用定时器函数
+		</script>
+	</body>
+</html>

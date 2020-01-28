@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #can{
+            backGround-color:blue;
+            height: 100px;
+            width:100px;
+           
+        }
+        #radius{
+            backGround-color:red;
+            height: 10px;
+            width:10px;
+            border-radius: 50px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+        rect=document.getElementById("can");
+        body=document.getElementsByTagName("body");
+        rect.addEventListener('dblclick', function(){
+            var radius=document.createElement("div");
+            radius.id="radius";
+            rect.appendChild(radius);
+        })
+        }
+    </script>
+</head>
+<body>
+    <div id="can">
+    </div>
+</body>
+</html>

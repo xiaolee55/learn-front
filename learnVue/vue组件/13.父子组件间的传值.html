@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+
+<body>
+    <div id="app">
+        <com1 :parentMsg="msg" @func="getMsgFromSon"></com1>
+    </div>
+
+    <template id="tmpl">
+        <div>
+            <h1>dd{{sonMsg}}</h1>
+            <input type="button" value="向父组件传递消息" @click="sendMsg">
+        </div>
+    </template>
+    <script>
+
+        var com1={
+            template: '#tmpl',
+            data(){
+                return {
+                    sonMsg: '松松！'
+                }
+            },
+            props: ['parentMsg'],
+            methods:{
+                sendMsg(){
+                    this.$emit('func',this.sonMsg)
+                }
+            }
+        }
+
+         var vue = new Vue({
+            el : '#app',
+            data : {
+                msg: "这是父组件中的数据",
+                msgFromSon: ''
+            	},
+            methods : {
+                getMsgFromSon(data){
+                    this.msgFromSon=data
+                    console.log("收到"+this.msgFromSon);
+                    
+                }
+            	},
+            components: {
+                com1
+            }    
+        });
+    </script>
+</body>
+
+</html>

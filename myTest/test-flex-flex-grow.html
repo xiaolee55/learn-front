@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo{
+            display: flex;
+            border: solid 2px orange;
+            height: 200px;
+            justify-content: center;
+        }
+        .item{
+            background-color: aqua;
+            border: solid 1px black;
+            color: white;
+            padding: 20px;
+        }
+        .a{
+            flex-grow: 1;
+        }
+        .b{
+            flex-grow: 1;
+        }
+        .c{
+            flex-grow: 1; 
+        }
+        /*该属性是作用于应用了flex布局的元素的子元素，参数表示每个子元素对剩余空间各自分配的比例，A,B,C都运用flex-grow时，三个元素会均分整个空间，当只有A，
+        B运用时，A，B均分除了C所占用空间外的其余空间，当只有A运用时，
+        A占用除B，C外的所有空间*/
+    </style>
+</head>
+<body>
+    <div class="demo  demo-baseline" >
+        <div class="item a">A</div>
+        <div class="item b">B</div>
+        <div class="item c">C</div>
+    </div>
+    <div class="demo  demo-baseline" >
+        <div class="item a">A</div>
+        <div class="item b">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo  demo-baseline" >
+        <div class="item a">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+</body>
+</html>

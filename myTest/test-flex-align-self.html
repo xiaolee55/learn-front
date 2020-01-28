@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo{
+            display: flex;
+            border: solid 2px orange;
+            height: 200px;
+            justify-content: center;
+        }
+        .demo-start{
+           align-items: flex-start;
+        }
+        .demo-center{
+           align-items: center;
+        }
+        .demo-end{
+           align-items: flex-end;
+        }
+        .demo-stretch{
+           align-items: stretch;
+        }
+        .demo-baseline{
+           align-items: baseline;
+        }
+        .item{
+            background-color: aqua;
+            border: solid 1px black;
+            color: white;
+            padding: 20px;
+        }
+        .item-start{
+            align-self: flex-start;
+        }
+        .item-center{
+            align-self: center;
+        }
+        .item-end{
+            align-self: flex-end;
+        }
+        .item-stretch{
+            align-self: stretch;
+        }
+        /*该属性是作用于应用了flex布局的元素的子元素，flex-start表示使该元素向上对齐，center表示该元素居中
+        ，flex-end表示该元素向下对齐，stretch表示两端对齐，即占满*/
+    </style>
+</head>
+<body>
+    <div class="demo  demo-start" >
+        <div class="item item-start">A</div>
+        <div class="item item-center">B</div>
+        <div class="item item-end">C</div>
+        <div class="item item-stretch">C</div>
+    </div>
+    <div class="demo  demo-center" >
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo  demo-end" >
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo  demo-stretch" >
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo  demo-baseline" >
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+</body>
+</html>

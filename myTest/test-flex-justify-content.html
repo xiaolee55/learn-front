@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo{
+            display: flex;
+            border: solid 2px orange;
+            height: 200px;
+        }
+        .demo-start{
+            justify-content: flex-start;
+        }
+        .demo-center{
+            justify-content: center;
+        }
+        .demo-end{
+            justify-content: flex-end;
+        }
+        .demo-stretch{
+            justify-content: stretch;
+        }
+        .demo-round{
+            justify-content: space-around;
+        }
+        .demo-between{
+            justify-content: space-between;
+        }
+        .demo-evenly{
+            justify-content: space-evenly;
+        }
+        .item{
+            background-color: aqua;
+            border: solid 1px black;
+            color: white;
+            padding: 20px;
+        }
+        /*flex-start表示所有子元素往左边靠；center表示所有元素往中间靠；flex-end表示所有元素往右边靠
+        ；space-around表示所有左右各留一块空间出来，其余元素均分；space-between表示有两个元素靠边，其余元素均分剩余空间，
+        space-evenly表示所有元素均分父元素*/
+    </style>
+</head>
+<body>
+    <div class="demo  demo-start" >
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo demo-center">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo demo-end">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo demo-stretch">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+    <div class="demo demo-round">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+        <div class="item">C</div>
+        <div class="item">A</div>
+        <div class="item">B</div>
+    </div>
+    <div class="demo demo-between">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+        <div class="item">A</div>
+        <div class="item">B</div>
+    </div>
+    <div class="demo demo-evenly">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>      
+    </div>
+    
+</body>
+</html>

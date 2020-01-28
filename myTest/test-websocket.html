@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset = utf-8"/>
+		<title>WebSocket客户端</title>
+	<script type="text/javascript">
+		var socket;
+        socket = new WebSocket("ws://localhost:8889/anyview");
+		console.log("xxx");
+		socket.onmessage = function(event){
+				console.log(event.data);
+			};
+		socket.onopen = function(event){
+				var ta = document.getElementById('responseContent');
+				ta.value = "你当前的浏览器支持WebSocket,请进行后续操作\r\n";
+			};
+		socket.onclose = function(event){
+				var ta = document.getElementById('responseContent');
+				ta.value = "";
+				ta.value = "WebSocket连接已经关闭\r\n";
+			};
+
+
+		function send(){
+			console.log(socket.readyState+"--"+WebSocket.OPEN);
+			if(socket.readyState == WebSocket.OPEN){
+				alert("WebSocket连接建立成功！！");
+				console.log(socket.readyState+"--"+WebSocket.OPEN);
+				var user={
+					roleId: "3",
+					username: "3117004422",
+					password: "123456",
+					schoolId: 55,
+					switch: true,
+				}
+			    var socketMsg={
+					type: 0,
+					content: user
+				}
+				var message=JSON.stringify(socketMsg);
+				socket.send(message);
+			}else{
+				console.log(socket.readyState)
+				alert("WebSocket连接没有建立成功！！");
+			}
+		}
+	</script>
+	</head>
+	<body>
+		<form onSubmit="return false;">
+			<input type = "text" name = "message" value = ""/>
+			<br/><br/>
+			<input type = "button" value = "发送WebSocket请求消息" onClick = "send()"/>
+			<hr color="red"/>
+			<h2>客户端接收到服务端返回的应答消息</h2>
+			<textarea id = "responseContent" style = "width:1024px; height:300px"></textarea>
+		</form>
+	</body>
+</html

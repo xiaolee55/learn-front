@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //以函数的形式来写对象---ES5写法
+        function Person(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        //添加方法
+        Person.prototype.showName=function(){
+            console.log(this.name);
+        }
+        Person.prototype.showAge=function(){
+            console.log(this.age);
+        }
+        //---------------------------------
+        function Worker(name,age,job){
+            Person.call(this,name,age);
+            this.job=job;
+        }
+        Worker.prototype.constructor=Worker;
+        Worker.prototype.showJob=function(){
+            console.log(this.job);
+        }
+        let p=new Person('blue',18);
+        p.showName();
+        p.showAge();
+        
+        let w=new Worker('blue',18,'随便')
+        w.showJob();
+
+        //有单独类申明，构造函数申明--ES6
+      { 
+       class Person{
+            constructor(name,age){
+                this.name=name;
+                this.age=age;
+            }
+            showName(){
+                console.log(this.name);
+            }
+            showAge(){
+               console.log(this.age);
+            }
+        }
+
+        class Worker extends Person{
+            constructor(name,age,job){
+                super(name,age);
+                this.job=job;
+            }
+            showJob(){
+                console.log(this.job);
+            }
+        }
+        let w=new Worker('blue',18,"教师")
+        w.showJob();
+      }
+    </script>
+</head> 
+<body>
+</body>
+</html>

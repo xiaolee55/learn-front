@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         var person={};
+         Object.defineProperty(person,"name",{
+        configurable: false,
+        writable: true,
+        enumerable: true,
+        value: "xiaoming"
+    });   
+    Object.defineProperty(person,"name",{
+        // configurable: true,
+        writable: false,
+        // enumerable: true,
+        value: "xiaomng"
+    });   
+    person.name="xiaohong"
+    // delete person.name;
+    console.log(person)
+    </script>
+</body>
+</html>

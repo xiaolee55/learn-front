@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+function MoreThanHalfNum_Solution(numbers)
+{
+    // write code here
+    let map = {}
+    for(var i=0;i<numbers.length;i++){
+        var val = numbers[i]
+        if(map[val]!==undefined)
+            map[val]++
+        else map[val]=0
+    }
+    let _key = 0
+    for(key in map){
+        if(map[key]>numbers.length/2)
+            _key = key
+    }
+    return _key
+}
+		MoreThanHalfNum_Solution([1,2,3,2,2,2,5,4,2])
+		</script>
+	</body>
+</html>
