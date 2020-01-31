@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //借用构造函数继承
+    //缺点：无法继承父类的原型
+    function Parent1() {
+      this.name = 'parent1'
+    }
+    function Child1() {
+      Parent1.call(this)
+      this.type = 'child1'
+    }
+
+    let c1=new Child1()
+    console.log(c1)
+
+    //原型继承，
+    //优点：可以继承所有原型链上的属性
+    //缺点，如果原型中含有引用类型的属性，那么在进行修改时会互相影响，
+    //但是如果是修改普通类型则会在实例中直接添加
+    function Parent2() {
+      this.name = 'parent'
+      this.play = [1,2,3]
+    }
+    function Child2() {
+      this.type = 'child2'
+    }
+
+    Child2.prototype = new Parent2()
+
+    var s1 = new Child2()
+    var s2 = new Child2()
+    s1.play.push(4)
+    s1.name='chikd'
+    console.log(s1,s2);
+
+    //组合继承
+    //优点：结合了原型继承和借用构造函数继承的优点，既不会产生父类中共享引用类型的问题，也不会担心原型丢失的问题
+    //缺点：Parent3执行了两次
+    function Parent3() {
+      this.name = 'parent'
+      this.play = [1,2,3]
+    }
+    function Child3() {
+      Parent3.call(this)
+      this.type = 'child3'
+    }
+    Child3.prototype = new Parent3()
+    var a1 = new Child3()
+    var a2 = new Child3()
+    a1.play.push(4)
+    console.log(a1,a2)
+
+    //组合继承的优化1
+    //优点：父类构造函数只执行了一次
+    //缺点：因为子类和父类的原型对象是同一个，所以无法通过instanceOf判断实例的直接类，
+    //因为constructor都是指向Parent4，但是又不能直接修改constructor，因为这样会使得父类的原型受到影响
+    function Parent4() {
+      this.name = 'parent'
+      this.play = [1,2,3]
+    }
+    function Child4() {
+      Parent3.call(this)
+      this.type = 'child4'
+    }
+    Child4.prototype = Parent4.prototype
+    var a1 = new Child4()
+    var a2 = new Child4()
+    console.log(a1,a2,Child4.prototype)
+    console.log(a1 instanceof Parent4,a1 instanceof Child4)
+
+    /**
+     * 组合继承的优化2
+     */
+      function Parent5 () {
+        this.name = 'parent5';
+        this.play = [1, 2, 3];
+    }
+    function Child5 () {
+        Parent5.call(this);
+        this.type = 'child5';
+    }
+    //使用Object.create创建一个以Parent5为原型的对象，并将这个对象作为Child5的原型，这样Child5的原型就与Parent5的原型区分开来的
+    Child5.prototype = Object.create(Parent5.prototype);  
+    //给原型增加constructor属性，用以判断直接类
+    Child5.prototype.constructor = Child5
+
+    var s7 = new Child5()
+    console.log(s7,s7 instanceof Child5,s7 instanceof Parent5,s7.constructor===Child5)
+  </script>
+</body>
+</html>

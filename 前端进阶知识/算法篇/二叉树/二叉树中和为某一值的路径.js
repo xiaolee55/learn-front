@@ -43,24 +43,23 @@ const treeNode = require('./treeNode.js')
 function FindPath(root,expectNumber) {
   const result = []
   if(root) {
-    FindPathCore(root,expectNumber,[],0,result)
+    FindPathCore(root,expectNumber,[],result)
   }
   return result
 }
 
-function FindPathCore(node,expectNumber,stack,sum,result) {
-  stack.push(node.val)
-  sum += node.val
-  if(!node.left && !node.right && sum === expectNumber) {  //当前节点已经是叶子结点且sum=期待值
-    result.push(stack.slice(0))
+function FindPathCore(root,expectNumber,stack,result) {
+  stack.push(root.value);  //把当前结点的值入栈
+  if(root.value == expectNumber && root.left==null && root.right==null){ //叶子结点，且值为exceptNumber减去前面的最后一个值
+    result.push(stack.slice());   //slice是对数组的浅拷贝，不加slice的话相当于将栈的指针push进path，导致stack的变化会影响path
   }
-  if(node.left) {    //如果还存在左节点，则继续递归
-    FindPathCore(node.left, expectNumber, stack, sum, result);
+  if(root.left!=null){
+    FindPathCore(root.left,expectNumber-root.value,stack,result);
   }
-  if(node.right) {   //如果还存在右节点，则继续递归
-    FindPathCore(node.right, expectNumber, stack, sum, result);
+  if(root.right!=null){
+    FindPathCore(root.right,expectNumber-root.value,stack,result);
   }
-  stack.pop()
+  stack.pop();   //把当前结点的值出栈，回溯
 }
 
 let a = new treeNode(1)
@@ -69,5 +68,5 @@ let c = new treeNode(3)
 a.left = b
 a.right = c
 
-console.log(valuePath(a,3));
+console.log(FindPath(a,3));
 

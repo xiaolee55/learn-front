@@ -22,7 +22,8 @@
           arrs.push(`${key}=${params[key]}`)
         }
         script.src = `${url}?${arrs.join('&')}`  //设置脚本的src
-        //由于<script>元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了foo函数，
+        //本质上就是通过url请求一个脚本的内容，请求到的内容直接放在script脚本内执行，只要后端返回的内容符合js语法即可
+        //由于<script>元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了对应函数，
         //该函数就会立即调用。作为参数的JSON数据被视为JavaScript对象，而不是字符串，因此避免了使用JSON.parse的步骤。
         document.body.appendChild(script)
       })

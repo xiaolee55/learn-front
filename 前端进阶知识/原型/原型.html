@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //实例的__proto__属性和构造函数的prototype属性指向的是同一对象，所以修改的时候会互相影响
+    function person() {} 
+    let a = new person()
+    person.prototype.a=1
+    a.__proto__.b=1
+    console.log(a,person.prototype);
+    console.log(Object.prototype.prototype);
+    
+  </script>
+</body>
+</html>
