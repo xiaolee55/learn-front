@@ -1,0 +1,22 @@
+package.json中
+// "main": "index.js",    //向外暴露的文件入口
+//"private": true,        //表示私有项目，不发布到npm
+//  "scripts": {     //会先到node_modules下查看是否安装了webpack，所以不用担心全局的问题，这样直接运行npm run bundle即可打包，而不用npx webpack
+    "bundle": "webpack"
+  }
+
+   webpack-cli的作用就是让我们能在命令行运行webpack这个命令
+
+  ## webpack启动的三种方式
+
+  **global全局安装:**
+  webpack index.js
+
+  **local局部安装：**
+  npx webpack index.js
+
+  **npm script 自定义启动脚本**
+  npm run bundle
+
+  ## webpack.config.js
+  
