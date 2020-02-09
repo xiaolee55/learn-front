@@ -1,0 +1,21 @@
+{
+  "presets": [["@babel/preset-env", { //这个才是真正的ES6翻译器，babel-loader只相当于一个桥梁
+    "targets": {   //配置兼容的浏览器
+      "edge": "17",
+      "firefox": "60",
+      "chrome": "50",
+      "safari": "11.1"
+    },
+    "useBuiltIns": "usage" //意思是使用polyfill的时候不用把所有代码都加进来，只用处理我写上去的业务代码，配置了这个就不用配置polyfill了，因为polyfill模拟了完整的ES6环境
+  }]],
+  "plugins": ["@babel/plugin-syntax-dynamic-import"]  //转义实验性质的异步语法，比如import('lodash').then
+  // "plugins": [[
+  //   "@babel/plugin-transform-runtime",    //按需加载，不会污染全局环境，适合在写类库,UI组件的时候使用
+  //   {
+  //     "corejs": 2,
+  //     "helpers": true,
+  //     "regenerator": true,
+  //     "useESModules": false
+  //   }
+  // ]]
+}

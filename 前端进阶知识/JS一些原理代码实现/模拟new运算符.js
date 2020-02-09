@@ -8,3 +8,10 @@ const _new = function(func) {
   }
 
 } 
+
+
+
+
+
+
+

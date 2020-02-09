@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //监听器Observer,劫持并监听所有属性，如果属性发生变化，就通知订阅者
+    //因为一个个属性用defineProperty设置太麻烦，所以封装一个函数来遍历其属性
+    function observable(obj) {
+      if(!obj || typeof obj !== 'object') {
+        return
+      }
+      let keys = Object.keys(obj)
+      keys.forEach((key)=>{
+        defineReactive(obj,key,obj[key])
+      })
+      return obj
+    }
+    //监听对象属性的具体逻辑
+    function defineReactive(obj,key,val) {
+      var dep = new Dep()  //每个属性都会有一个订阅器
+      Object.defineProperty(obj,key,{
+        enumerable: true,
+        configurable: true,
+        get() {
+          if(Dep.target) {
+            dep.addSub(Dep.target)
+          }
+          return val
+        },
+        set(newVal) {
+          if(newVal == val) {
+            return
+          }
+          val = newVal
+          dep.notify()   //值变化，通知所有订阅者改变
+        }
+      })
+    }    
+
+    //依赖收集容器，即订阅器Dep，用来收集订阅者，对监听器Observer和订阅者Watcher进行统一管理
+    function Dep(params) {
+      this.subs = []
+    }
+    Dep.prototype = {
+      addSub: function(sub) { //添加订阅者
+        this.subs.push(sub)
+      },
+      notify: function() {   //数据发生变化，通知所有订阅者更新
+        this.subs.forEach(function(sub) {
+          sub.update()
+        })
+      }
+    }
+    Dep.target = null;  //因为同一时间只能有一个全局的Watcher计算
+
+    //订阅者Watcher，可以收到属性的变化通知并执行相应的方法，从而更新视图
+    function Watcher(vm,exp,cb) {
+      this.vm = vm    //Vue实例对象
+      this.exp = exp  //绑定在node结点上的指令所对应的属性值，比如v-model='name'，那么exp的值就是这个name
+      this.cb = cb   //订阅者的更新函数
+      this.value = this.get() //首次渲染这个watcher就会执行get函数
+    }
+    Watcher.prototype = {
+      update: function() {
+        this.run()
+      },
+      run: function() {
+        //将最新的数据和之前刚绑定时的数据进行对比，如果不相同，则更新视图，并更新缓存的value数据
+        var value = this.vm.data[this.exp]
+        var oldVal = this.value
+        if(value !== oldVal) {
+          this.value = value
+          this.cb.call(this.vm,value,oldVal)
+        }
+      },
+      get: function() {
+        Dep.target = this //将Deploy当前的target值变为现在的watcher
+        var value = this.vm.data[this.exp]  //访问data中的属性值，目的是为了触发监听器中的getter，将订阅者收集到订阅器
+        Dep.target = null  //全局变量 订阅者 释放
+        return value 
+      }
+    }
+    //解析器Compile，可以解析每个节点的相关指令，对末班数据和订阅器进行初始化
+    function compileText(node,exp) {
+      var self = this
+      var initText = this.vm[exp] //获取属性值
+      this.updateText(node,initText) //dom更新节点文本值
+      //将这个指令初始化为一个订阅者，后续exp改变时，就会触发这个问题，从而更新视图
+      new Watcher(this.vm,exp,function(value) {
+        self.updateText(node,value)
+      })
+    }
+
+
+  </script>
+</body>
+</html>
