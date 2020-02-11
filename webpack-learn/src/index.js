@@ -98,17 +98,39 @@
 
 //懒加载学习
 //懒加载就是通过异步import的形式去加载某个模块，但是模块什么时候加载是不确定的
-async function getComponent() {
-  // webpackPrefetch:true表示当网络有空闲的时候就把脚本预先加载好，如果不加这个的话就是等到点击才会去加载这个脚本，提高代码利用率，解决懒加载带来的用户体验问题
-  //还有一个webpackPreLoad:true，是和主文件一起加载的
-  const {default:_} = import(/*webpackPrefetch:true*/'lodash')
-  const element = document.createElement('div')
-  element.innerHTML = _.join('LEE',"man",'-')
-  return element
-}
+// async function getComponent() {
+//   // webpackPrefetch:true表示当网络有空闲的时候就把脚本预先加载好，如果不加这个的话就是等到点击才会去加载这个脚本，提高代码利用率，解决懒加载带来的用户体验问题
+//   //还有一个webpackPreLoad:true，是和主文件一起加载的
+//   const {default:_} = import(/*webpackPrefetch:true*/'lodash')
+//   const element = document.createElement('div')
+//   element.innerHTML = _.join('LEE',"man",'-')
+//   return element
+// }
 
-document.addEventListener('click',() => {
-  getComponent().then(element =>{
-    document.body.appendChild(element)
-  })
-})
+// document.addEventListener('click',() => {
+//   getComponent().then(element =>{
+//     document.body.appendChild(element)
+//   })
+// })
+
+//学习CSS打包
+// import './style.css';
+
+// console.log("hello");
+
+
+// webpack与浏览器缓存
+// import _ from 'lodash'
+// import $ from 'jquery'
+
+// const dom = $('div')
+// dom.html(_.join(['dell','lese']),'')
+// $('body').append(dom)
+
+// // 测试shimming的效果
+// import ui from './jquery.ui'
+// ui()
+
+// console.log(this);
+
+console.log(this==window);

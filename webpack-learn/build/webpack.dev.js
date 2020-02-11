@@ -1,3 +1,5 @@
+//引入路径模块
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')  //用来合并公有配置和开发环境（线上环境）
 const commonConfig = require('./webpack.common.js') 
@@ -12,27 +14,46 @@ const devConfig = {
 
   //development  devtool: 'cheap-module-eval-source-map'
   //production  devtool: 'cheap-module-source-map'
- 
+  output: {              //配置出口信息
+    publicPath: './',  //配置出口文件的默认公共url，应用场景是在把文件放在一些CDN上时，可通过url直接加载js文件
+    filename: '[name].js',  //打包好的文件的名称，默认为main.js，用[name]这种形式就是占位符，可以容纳多个出口文件
+    chunkFilename: '[name].chunk.js', //如果是间接引入的JS文件（就是不是直接在HTML文件引入的，就走这个配置）
+    path: path.resolve(__dirname, '../dist') //打包好的文件所在的目录
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+         //注意顺序，style-loader要在前面（因为要先解析css才能挂载到style，而webpack的执行顺序是从右到左），
+         //css-loader就是帮我们理清所有css文件之间的关系，style-loader则是把样式挂载到HTML文档中的head中的style标签中
+        use: ['style-loader', 
+              {
+                loader:'css-loader',
+                options: {
+                   importLoaders: 2,   //表示处理每个import要经过的loader数量（下面有两个loader，所以是2）
+                   modules: true       //表示CSS模块化，即每个JS文件导入的css都不会影响其他js的元素（模块化只对类名有效，其他的选择器不会做哈希处理）
+                }
+              },
+              'postcss-loader','sass-loader']  
+      },{
+        test: /\.css$/,
+        use: ['style-loader', 
+             'css-loader',
+            'postcss-loader']  
+      }]
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
-  optimization: {   
-    //在开发环境下配置这个则可以开启TreeShaking，动态打包modules代码,如果是production环境，则不需要此配置,因为mode:production自带treeShaking
-    //注意：这个配置只起到标记的作用，不会真正删除，只有在生产环境下才能真正删除
-    // treeshking是减小打包的bundle size很重要的一个手段，但触发treeshking是有条件的，首先需要代码是es module规范的并且使用解构赋值的方式引入，
-    // 第二要开始optimization.usedExports来标记使用和未使用的模块，第三是使用压缩的插件进行删除未使用代码。 webpack4的mode设置为production之后，
-    // 我们只需要关心第一点就好了。
-    usedExports: true
-  },
 
   //开启一个服务器，可以发送请求，配置实时刷新，自动打开浏览器，跨域等
   devServer: {
-    contentBase: './bundle',
+    contentBase: './dist',
     open:true,   //自动打开浏览器
     proxy: {
       '/api' : 'http://localhost:3000'
     },
-    port: 8081,
+    port: 8080,
     hot: true,  //因为devserver默认会刷新页面，但有时候我们不需要刷新页面，所以需要这个hot，配合webpack自带插件webpack.HotModuleReplacementPlugin使用
     // hotOnly: true   //热更新失败时不会刷新页面
   }

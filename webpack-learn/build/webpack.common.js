@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //在打包开始前将打包目录的文件夹清空，防止出现过多没用的文件
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
+const webpack = require('webpack')
+
 module.exports = {
   entry:{    //配置打包的入口文件，下面这种形式，键就是出口文件的名称，值就是入口文件地址
     main: './src/index.js',
@@ -17,17 +19,12 @@ module.exports = {
    //  bundle: './src/index.js'
    } ,
  
-   output: {              //配置出口信息
-     publicPath: './',  //配置出口文件的默认公共url，应用场景是在把文件放在一些CDN上时，可通过url直接加载js文件
-     filename: '[name].js',  //打包好的文件的名称，默认为main.js，用[name]这种形式就是占位符，可以容纳多个出口文件
-     path: path.resolve(__dirname, '../bundle') //打包好的文件所在的目录
-   },
- 
    module: {  //只要引入的模块不是js，比如图片，vue之类，都要使用loader，因为webpack默认只能打包js文件
     rules: [{
       test: /\.js$/,   //遇到JS文件就用babel-loader处理
       exclude: /node_modules/,
-      loader: "babel-loader",
+      use: ["babel-loader","imports-loader?this=>window"]   //使用imports-loader来改变webpack导致的this的默认指向
+      // loader: 'babel-loader'
     },{ //规定.jpg格式的打包工具
       test: /\.jpg|png|gif$/,
       use: {
@@ -44,35 +41,32 @@ module.exports = {
         }
       }
     },{
-      test: /\.css$/,
-       //注意顺序，style-loader要在前面（因为要先解析css才能挂载到style，而webpack的执行顺序是从右到左），
-       //css-loader就是帮我们理清所有css文件之间的关系，style-loader则是把样式挂载到HTML文档中的head中的style标签中
-      use: ['style-loader', 
-            {
-              loader:'css-loader',
-              options: {
-                 importLoaders: 2,   //表示处理每个import要经过的loader数量（下面有两个loader，所以是2）
-                 modules: true       //表示CSS模块化，即每个JS文件导入的css都不会影响其他js的元素（模块化只对类名有效，其他的选择器不会做哈希处理）
-              }
-            },
-            'postcss-loader','sass-loader']  
-    },{
       test: /\.(eot|ttf|svg|woff)$/,    //处理字体文件
       use: {
         loader: 'file-loader'
       }
     }]
   },
-
+  performance: false,  //表示不要提示性能相关的警告
   plugins: [
     new HtmlWebpackPlugin({  //这个插件的作用是生成一个HTML文件并把打包的JS进行引入
       template: 'src/index.html'    //自定义HTML模板
     }),
     new CleanWebpackPlugin({//自动清空上次打包剩余的文件
       root: path.resolve(__dirname,'../') //配置以根目录
-    })  
+    }),
+    new webpack.ProvidePlugin({   
+      $: 'jquery',   //表示当遇到$符号的时候，就自动导入jQuery
+      _join: ['lodash', 'join']  //表示使用lodash中的join方法
+    })
   ],
   optimization: {
+      //在开发环境下配置usedExports: true则可以开启TreeShaking，动态打包modules代码,如果是production环境，则不需要此配置,因为mode:production自带treeShaking
+      //注意：这个配置只起到标记的作用，不会真正删除，只有在生产环境下才能真正删除
+      // treeshking是减小打包的bundle size很重要的一个手段，但触发treeshking是有条件的，首先需要代码是es module规范的并且使用解构赋值的方式引入，
+      // 第二要开始optimization.usedExports来标记使用和未使用的模块，第三是使用压缩的插件进行删除未使用代码。 webpack4的mode设置为production之后，
+      // 我们只需要关心第一点就好了。
+    usedExports: true,
     splitChunks: {  
       chunks: 'all',   //值为async表示配置只对异步代码起效，initial表示对同步代码进行代码分割，all表示对同步异步代码都有效，默认值是async
       minSize: 30000,  //表示打包的文件大于规定的字节数才做代码分割
@@ -83,6 +77,12 @@ module.exports = {
       automaticNameDelimiter: '~',  //表示打包文件的默认连接符
       name: true,  //true表示让CacheGroup里面的filename有效
       cacheGroups: {   //chunks和CacheGroups是配合使用的
+        styles: { //在有多入口文件时，配置这个可以让CSS统一打包到一个叫styles的文件之中
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
         vendors: {
           test: /[\\/]node_modules[\\/]/, //检测是否存在于node_modules中，不存在则vendors中的配置全部失效
           // filename: 'vendors.js',         //配置这些分割代码的打包出口文件的名称
@@ -96,4 +96,14 @@ module.exports = {
       }
     }
   }
+
+  //使用全局变量env，配合pack.json中的script，可以实现单文件判断环境并合并公有环境或者开发环境
+  // module.exports = (env) => {
+  //   if(env && env.production) {
+  //     return merge(commonConfig, prodConfig);
+  //   }else {
+  //     return merge(commonConfig, devConfig);
+  //   }
+  // }
+  
 }

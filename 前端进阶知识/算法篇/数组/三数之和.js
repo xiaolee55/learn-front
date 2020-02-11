@@ -1,7 +1,7 @@
-
+//遍历数组，每碰到一个数就设置两个指针向中间靠拢，判断和是否为0，需要注意的是遇到重复数字需要跳过（该数字已被计算的情况下） 
 var threeSum = function(nums) {
   const result = []
-  nums.sort((a,b) => a - b)
+  nums.sort((a,b) => a - b)   //先对数组进行排序
   for (let i = 0; i < nums.length; i++) {
     //跳过重复数字
     if(i&&nums[i] === nums[i-1]) continue   //如果和上一个数据相同，则跳过它，因为它对应的查找上一个数字已经查询过

@@ -1,0 +1,16 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx webpack"
+  },
+  "author": "Lee",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
