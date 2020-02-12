@@ -18,16 +18,17 @@
   <script>
     var container = document.getElementById('container');
     var count = 1;
+//  第一次触发：对比时间戳为0，剩余时间为负数，立即执行函数并更新对比时间戳
+// 第二次触发：剩余时间为正数，定时器不存在，设置定时器
+// 之后的触发：剩余时间为正数，定时器存在，不执行其他行为
+// 直至剩余时间小于等于0或定时器内函数执行（由于回调触发有间隔，且setTimeout有误差，故哪个先触发并不确定）
+// 若定时器内函数执行，更新对比时间戳，并将定时器置为null，下一次触发继续设定定时器
+// 若定时器内函数未执行，但剩余时间小于等于0，清除定时器并置为null，立即执行函数，更新时间戳，下一次触发继续设定定时器
+// 停止触发后：若非在上面所述的两个特殊时间点时停止触发，则会存在一个定时器，原函数还会被执行一次
 
     function throttle(func, wait) {
         var timeout, context, args, result;
         var previous = 0;
-
-        var later = function() {
-            previous = +new Date();
-            timeout = null;
-            func.apply(context, args)
-        };
 
         var throttled = function() {
             var now = +new Date();
@@ -35,16 +36,19 @@
             var remaining = wait - (now - previous);
             context = this;
             args = arguments;
-            // 如果没有剩余的时间了或者你改了系统时间
-            if (remaining <= 0 || remaining > wait) {
-                if (timeout) {
-                    clearTimeout(timeout);
-                    timeout = null;
+            if (remaining <= 0 || remaining > wait) {  //1
+                if (timeout) {   //因为setTimeout不准时，所以不知道是走定时器逻辑还是时间戳逻辑，这个判断是为了防止定时器还存在的情况下走时间戳逻辑的
+                   clearTimeout(timeout);
+                   timeout = null;
                 }
                 previous = now;
                 func.apply(context, args);
-            } else if (!timeout) {
-                timeout = setTimeout(later, remaining);
+            } else if (!timeout) {  //2
+                timeout = setTimeout(function() {
+                    previous = +new Date();
+                    timeout = null;
+                    func.apply(context, args)
+                }, remaining);
             }
         };
         return throttled;
@@ -52,7 +56,7 @@
   function getUserAction() {
       container.innerHTML = count++;
   };
-  container.onmousemove = throttle(getUserAction, 1000);
+  container.onmousemove = throttle(getUserAction, 3000);
   </script>
 </body>
 </html>

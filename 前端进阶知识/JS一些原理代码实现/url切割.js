@@ -1,0 +1,4 @@
+function getUrlParams(url,key){
+  
+}
+
