@@ -1,0 +1,26 @@
+{
+  "name": "myProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaolee55/learn-front.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaolee55/learn-front/issues"
+  },
+  "homepage": "https://github.com/xiaolee55/learn-front#readme",
+  "dependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/parser": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/traverse": "^7.8.4"
+  }
+}
