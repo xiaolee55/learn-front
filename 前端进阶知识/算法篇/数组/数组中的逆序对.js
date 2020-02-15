@@ -1,3 +1,8 @@
+function InversePairs(data)
+{
+    var copy = [];
+    return mergeInversePairs(data, copy, 0, data.length - 1);
+}
 function mergeInversePairs(arr, copy, begin, end) {
   if(begin === end) {
       return 0;
