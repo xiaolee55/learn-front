@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    .father{
+      overflow:hidden;
+      position: absolute;
+      left:20px;
+      right:20px;
+      top:50%;
+      transform: translateY(-50%);
+    }
+
+    .son{
+      height:0;
+      width:100%;
+      padding-top:50%;
+      background:pink;
+    }
+
+    span{
+      position:absolute;
+      top:50%;
+      left:50%; 
+      transform: translate(-50%,-50%);
+      font-size:10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <div class="father">
+    <div class="son"><span>A</span></div>
+  </div> -->
+  <!-- <script>
+//题1
+if ([] == false) {console.log(1);};
+if ({} == false ) {console.log(2);};
+if ([]) {console.log(3);};
+if ([1] == [1]) {console.log(4);};
+
+// 题2
+const obj = {
+  name: " jsCoder",
+  skill: ["es6", "react", "angular"],
+  say: function () {
+    for(let i = 0, len = this.skill.length; i< len; i++){
+      setTimeout(()=>{
+        console.log('No.' + i + this.name);
+        console.log(this.skill[i]);
+        console.log('--------------------------');
+      }, 0);
+      console.log(i);
+    }
+  }
+};
+obj.say();
+
+//题3
+Function.prototype.bind = function(obj){
+    const args = Array.prototype.slice.call(arguments,1);//保留bind时的参数
+    const that = this;
+    const bound =  function(){
+        const inArgs = Array.prototype.slice.call(arguments);//执行bind的函数时的参数
+        const newArgs = args.concat(inArgs);//组装参数
+        const bo = obj || this;
+        that.apply(bo,newArgs);//执行bind的函数
+    }
+    //继承prototype--寄生组合式继承
+    bound.prototype = Object.create(this.prototype);
+    return bound;
+}
+function Animal(name, color) {
+ this.name = name;
+ this.color = color;
+}
+Animal.prototype.say = function () {
+ return `I'm a ${this.color} ${this.name}`;
+};
+const Cat = Animal.bind(null, 'cat');
+const cat = new Cat('white');
+console.log(cat.say(),cat instanceof Cat,cat instanceof Animal)
+if (cat.say() === 'I\'m a white cat' && cat instanceof Cat && cat instanceof Animal) {
+ console.log('success');
+}
+
+//题4 请用算法实现，从给定的无序、不重复的数组data中，取出n个数，使其相加和为sum。并给出算法的时间/空间复杂度 
+function getAllCombine(array, n, sum, temp) {
+      if (temp.length === n) {  //如果积累的数字长度达到n，则进行一次计算，相等则返回结果
+        if (temp.reduce((t, c) => t + c) === sum) {
+          return temp;
+        }
+        return;
+      }
+      for (let i = 0; i < array.length; i++) {
+        const current = array.shift();
+        temp.push(current);
+        const result = getAllCombine(array, n, sum, temp);
+        if (result) {
+          return result;
+        }
+        temp.pop();  //如果走到这轮，说明递归不符合，把最后一个数弹出重新计算
+        array.push(current);   //把数加回来
+      }
+    }
+    const arr = [1, 2, 3, 4, 5, 6];
+
+    console.log(getAllCombin(arr, 3, 10, []));
+  </script> -->
+  <script>
+    //第二轮面试
+    // 题1
+    // var a = function () { this.b = 3; }   //直接调用会给全局变量赋值
+    // var c = new a();
+    // a.prototype.b = 9;
+    // var b = 7;
+    // a();
+    // console.log(b);
+    // console.log(c.b);
+    
+    // //题2 实现继承
+    // function Animal() {
+    //   this.name = "animal"
+    //   this.say = function() {
+    //     console.log()
+    //   }
+    // }
+    // function Dog() {
+    //   Animal.call(this)
+    //   this.name = "dog"
+    // }
+    // Dog.prototype = Object.create(Animal.prototype);  
+    // Dog.prototype.constructor = Dog
+    
+    //题3 实现repeat函数
+  //   function repeat(func, times, wait) {
+  //     let index=0,timer=null
+  //     return async function () {
+  //       while(index++<times){
+  //         const value = arguments[0]
+  //         const timer= await setTimeout(function() {
+  //           func.call(null,value)
+  //           if(index == times-1) clearTimeout(timer)
+  //         },wait*index)
+  //       }       
+  //     }
+  //   }
+  //   const repeatFunc = repeat(alert, 4, 3000)
+  //   repeatFunc("你好")
+  // </script>
+  <script>
+    //第三轮面试
+
+    // 第一题
+    // function formatNumber(str) {
+    //   return str.replace(/(?!^)(?=(\d{3})+$)/g,',')
+    // }
+    
+    // console.log(formatNumber("123456789")) // 1,234,567,890
+
+    // (123456789).toLocaleString('en-US') // 1,234,567,890
+
+    function formatNumber(str){
+      console.log(str.split("").reverse())
+      return str.split("").reverse().reduce((prev,current,index) => {
+        console.log(prev,current,index)
+          return ((index%3)? current: (current+',')) + prev;
+          })
+    }
+   formatNumber("34734593450392")
+  </script>
+</body>
+</html>
+  <!-- https://www.nowcoder.com/discuss/337035?type=2&order=3&pos=56&page=1 -->
