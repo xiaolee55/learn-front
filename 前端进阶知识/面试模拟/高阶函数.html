@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+   // 用闭包实现add()函数，第n次调用的时候输出n
+   function add(){
+      let a = 1
+      function s(){
+         a++
+         return s;
+      }
+      s.toString = function(){return a;}
+      return s;
+   }
+   console.log(add()()()());
+   </script>   
+</body>
+</html>

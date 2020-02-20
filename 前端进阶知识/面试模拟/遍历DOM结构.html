@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div>
+      <span></span>
+      <span></span>
+      <p></p>
+      <a href=""></a>
+    </div>
+  </div>
+  <div></div>
+</body>
+</html>
+
+<script>
+function getAllHTMLTags() {
+  const mapper = {};
+  const tags = [...window.document.querySelectorAll("*")].map(
+    dom => dom.tagName
+  );
+  for (let i = 0; i < tags.length; i++) {
+      const tag = tags[i];
+      if (mapper[tag] === void 0) {
+          mapper[tag] = 1;
+      }
+      else mapper[tag] += 1;
+  }
+
+  return Object.entries(mapper).sort((a, b) => b[1] - a[1]).map(item=> { return {[item[0]]:item[1]} })
+}
+console.log(getAllHTMLTags())
+// </script>

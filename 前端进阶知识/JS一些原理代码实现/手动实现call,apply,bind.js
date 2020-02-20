@@ -3,7 +3,8 @@
 // 2.context 为可选参数，如果不传的话默认上下文为 window
 // 3.为context 创建一个 Symbol（保证不会重名）属性，将当前函数赋值给这个属性
 // 4.处理参数，传入第一个参数后的其余参数
-// 4.调用函数后即删除该Symbol属性
+// 5.调用函数后即删除该Symbol属性
+// 6.返回函数的调用值
 Function.prototype.myCall = function(context=window,...args) {   //设一个数组来接收所有参数
   if(this === Function.prototype) {//call不能直接调用，而要由函数调用
     return undefined //防止Function.prototype.myCall()直接调用
@@ -54,7 +55,7 @@ Function.prototype.myBind = function (context,...args1) {
   console.log(context);
   
   return function F(...args2) {
-    // 判断是否用于构造函数,用于构造函数则不作绑定
+    // 判断是否用于构造函数,用于构造函数则不作绑定，new的时候会调用这个函数并把this传进来调用这个函数（结合new的原理就能明白）
     if (this instanceof F) {
       return new _this(...args1, ...args2)
     }
