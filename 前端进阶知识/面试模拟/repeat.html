@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script> 
+    function repeat(func, times, wait) {
+      let index=0,timer=null
+      return async function () {
+        while(index++<times){
+          const value = arguments[0]
+          const timer= await setTimeout(function() {
+            func.call(null,value)
+            if(index == times-1) clearTimeout(timer)
+          },wait*index)
+        }       
+      }
+    }
+    const repeatFunc = repeat(alert, 4, 3000);
+    
+    // 输出
+    // 会alert4次 helloworld, 每次间隔3秒
+    repeatFunc('hellworld');
+    // 会alert4次 worldhellp, 每次间隔3秒
+    repeatFunc('worldhello')
+  </script>
+</body>
+</html>

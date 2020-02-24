@@ -1,4 +1,0 @@
-function getUrlParams(url,key){
-  
-}
-
