@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #grand{
+      height: 300px;
+      width: 300px;
+      background-color: blue;
+    }
+    #father{
+      height: 200px;
+      width: 200px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="grand">
+    <div id="father">
+      <button id="able">可点击按钮</button>
+      <button id="disable">不可点击按钮</button>
+    </div>
+  </div>
+  <script>
+    const able = document.getElementById("able")
+    const disable = document.getElementById("disable")
+    const father = document.getElementById("father")
+    const grand = document.getElementById("grand")
+    a=0
+    grand.addEventListener("click",function(e){
+      console.log("grand")
+      if(e.target.id!=="able") {
+        e.stopPropagation()
+      }
+    },true)
+    father.addEventListener("click",function(){
+      console.log("father")
+    },false)
+    able.addEventListener("click",function(){
+      console.log("able")
+    },false)
+    disable.addEventListener("click",function(){
+      console.log("disable")
+    },false)
+  </script>
+</body>
+</html>

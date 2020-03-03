@@ -11,7 +11,7 @@
       width: 100%;
     }
     body>div{
-      height: 100px;
+      height: 100%;
     }
     .left {
       float: left;
@@ -25,13 +25,12 @@
     }
     .center{
       background-color: blue;
-      height: 200px;
       overflow: hidden;
     }
   </style>
 </head>
 <body>
-  <!-- 浮动元素不会盖住文档流中盒子的文本 -->
+  <!-- 利用浮动元素不会盖住文档流中盒子的文本 -->
     <div class="left">左</div>
     <div class="right">右</div>
     <!-- 文档流中的盒子会无视浮动盒子，也就是说在文档流盒子前面存在浮动盒子，文档流盒子也不会换行，反之则不是，浮动盒子前面如果有文档流盒子则

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  html,body{
+    margin: 0;
+  }
+  .father{
+    border: 1px solid black;
+    margin-top: 101px;
+    width: 100px;
+    height: 100px;
+    overflow: auto;
+  }
+  .child{
+    width: 100px;
+    /* padding: 2px; */
+  }
+</style>
+<body>
+  <div class="father">
+    <div class="child">
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+      1</br>
+    </div>
+  </div>
+  <script>
+    var father = document.querySelector(".father")
+    var child = document.querySelector(".child")
+    //offsetHieght包含滚动条，边框，边距，clientHeight不包含滚动条和边框，scrollHeight是包含溢出的内容
+    console.log(father.offsetHeight,father.clientHeight,father.scrollHeight)
+    setTimeout(() => {
+      console.log(father.offsetTop,father.clientTop,father.scrollTop)
+      console.log(child.offsetTop,child.clientTop,child.scrollTop)
+    }, 1000);
+    
+    console.log("\n")
+    console.log(child.offsetHeight,child.clientHeight,child.scrollHeight)
+
+  </script>
+</body>
+</html>

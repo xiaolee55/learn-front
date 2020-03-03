@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* .a{
+      background-color: green;
+      width: 300px;
+      height: 300px;
+    } */
+    .test {
+      /* position: absolute;
+      top: 10px;
+      z-index: 3; */
+      transform: translateY(0px);
+      background-color: blue;
+      width: 500px;
+      height: 500px;
+      /* will-change: top; */
+    }
+    #button{
+      position: absolute;
+      top: 600px;
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+  <!-- <div class="a">1</div> -->
+  <div class="test">2</div>
+  <button id="button">改变top</button>
+  <script>
+    var button = document.getElementById("button")
+    var test = document.querySelector(".test")
+    var num = 10
+    button.onclick = function() {
+      setInterval(() => {
+        test.style.transform = `translateY(${num++}px)`
+      }, 100);
+    }
+  </script>
+</body>
+</html>
