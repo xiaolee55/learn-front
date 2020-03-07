@@ -6,9 +6,23 @@
   <title>Document</title>
 </head>
 <body>
+  <button class="a">点我</button>
+  <button class="a">点我</button>
+  <button class="a">点我</button>
   <script>
-    a=5
-    console.log(a);
+
+      {
+        let i=0;
+        
+        let i=0
+      }
+
+    var a = document.getElementsByClassName("a")
+   for(let i=0;i<3;i++){
+	  (a[i].onclick=function(){
+      alert(i)
+    })()
+  }
   </script>
 </body>
 </html>

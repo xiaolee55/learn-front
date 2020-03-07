@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .left,.right{
+      height: 150px;
+      width: 100px;
+      background-color: red;
+      float: left;
+    }
+    .left {
+      transform: rotate(-45deg);
+      margin-left: 20px;
+      border-radius: 75px 75px 0 0 ;
+    }
+    .right {
+      transform: rotate(45deg);
+      margin-left: -65px;
+      border-radius: 75px 75px 0 0 ;
+    }
+    .father{
+      animation: dance 1s ease infinite alternate;
+    }
+    @keyframes dance{
+      100%{
+        transform:scale(1.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="father">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>

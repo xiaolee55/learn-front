@@ -5,7 +5,7 @@ function minNumberInRotateArray(array) {
   var high = array.length - 1
   while(low<high) {
     var mid = Math.floor(low+(high-low)/2)
-    if(array[mid]>array[high]) {   //出现了中间值小于高位值的情况，说明中间值在第一段数组中，则在右边寻找
+    if(array[mid]>array[high]) {   //出现了中间值大于高位值的情况，说明中间值在第一段数组中，则在右边寻找
       low = mid + 1
     }else if(array[mid] === array[high]) { //中间值等于最高位值，则无法判断在左还是在右，只能一位一位的找
       high = high - 1
@@ -13,5 +13,7 @@ function minNumberInRotateArray(array) {
       high = mid
     }
   }
-  return array[mid]
+  return array[low]
 }
+
+console.log(minNumberInRotateArray([1,3,5]));
