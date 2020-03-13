@@ -25,3 +25,5 @@ function insertSort(array) {
   }
   return array;
 }
+
+insertSort([1,6,5,2,3,5,6,7])

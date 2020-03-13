@@ -34,3 +34,22 @@ function quickSort(array, start, end) {
 }
 
 console.log( quickSort([1,434,54,23,65],0,4))
+
+
+//递归
+function quickSort(array) {
+  if (array.length < 2) {
+    return array;
+  }
+  const target = array[0];
+  const left = [];
+  const right = [];
+  for (let i = 1; i < array.length; i++) {
+    if (array[i] < target) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+  return quickSort(left).concat([target], quickSort(right));
+}

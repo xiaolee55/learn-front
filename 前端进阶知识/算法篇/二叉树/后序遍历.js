@@ -28,7 +28,7 @@ function laterOrderTraversal(root) {
       current = stack.pop() 
       result.push(current.val)
       last = current
-      current = null //继续弹栈
+      current = null //防止重复执行while(current)这个循环
     } else {
       current = current.right
     }
